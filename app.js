@@ -1,13 +1,14 @@
 // Importe Express dans une constante avec la commande require:
 const express = require('express');
-// Crer une application Express:
-const app = express();
-
 // Importe le package body-parser:
 const bodyParser = require('body-parser');
-
 // Importe mongoose:
 const mongoose = require('mongoose');
+
+// Importe le routeur de User:
+const sauceRoutes = require('./routes/sauce');
+// Importe le routeur de User:
+const userRoutes = require('./routes/user');
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // Connexions à la bdd:
@@ -16,6 +17,9 @@ mongoose.connect('mongodb+srv://User-1:M0n6OD8-2101-57070@cluster0.ncavz.mongodb
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+// Crer une application Express:
+const app = express();
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // Etape pour autoriser les connexions a l'api
@@ -28,8 +32,13 @@ app.use((req, res, next) => {
     next();
   });
 
+app.use(bodyParser.json())
+
 app.use((req, res) => {
-   res.json({ message: 'Votre requête a bien été reçue !' }); 
-});
+    res.json({ message: 'Votre requête a bien été reçue !' }); 
+ });
+
+app.use('/api/sauce', sauceRoutes)
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
