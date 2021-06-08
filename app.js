@@ -38,7 +38,7 @@ app.use((req, res) => {
     res.json({ message: 'Votre requête a bien été reçue !' }); 
  });
 
-app.use('/api/sauce', sauceRoutes)
+app.use('/api/sauces', sauceRoutes)
 app.use('/api/auth', userRoutes);
 
 module.exports = app;
