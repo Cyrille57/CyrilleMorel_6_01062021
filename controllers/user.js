@@ -9,9 +9,9 @@ exports.signup = (req, res, next) => {
     .hash(req.body.password, 10)
     .then((hash) => {
       const user = new User({
-        userId: req.body.userId,
         email: req.body.email,
         password: hash,
+        
       });
       user
         .save()
@@ -39,8 +39,8 @@ exports.login = (req, res, next) => {
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       }
-      console.log(user.password) 
-      console.log(req.body.password)
+      //console.log(user.password) 
+      //console.log(req.body.password)
       bcrypt.compare(req.body.password, user.password)
         .then(valid => {
           if (!valid) {

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 // Importe mongoose:
 const mongoose = require('mongoose');
 
+const path = require('path');
 // Importe le routeur de User:
 const sauceRoutes = require('./routes/sauce');
 // Importe le routeur de User:
@@ -12,7 +13,8 @@ const userRoutes = require('./routes/user');
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // Connexions à la bdd:
-mongoose.connect('mongodb+srv://User-1:M0n6OD8-2101-57070@cluster0.ncavz.mongodb.net/Pekocko?retryWrites=true&w=majority',
+//mongoose.connect('mongodb+srv://User-1:M0n6OD8-2101-57070@cluster0.ncavz.mongodb.net/Pekocko?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://user-read-write:rp5E2NaTB89xGyY@cluster0.ncavz.mongodb.net/Pekocko?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -32,13 +34,11 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.use((req, res) => {
-    res.json({ message: 'Votre requête a bien été reçue !' }); 
- });
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
-app.use('/api/sauces', sauceRoutes)
+app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app;

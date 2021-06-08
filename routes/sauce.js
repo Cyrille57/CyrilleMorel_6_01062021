@@ -3,11 +3,13 @@ const router = express.Router();
 
 const auth = require('../middleware/auth');
 
+const multer = require('../middleware/multer-config');
+
 // Importe le model sauce:
 const sauceCtrl = require('../controllers/sauce')
 
 // CREATION ////////////////////////////////////
-router.post('/', auth, sauceCtrl.createSauce);
+router.post('/', auth, multer, sauceCtrl.createSauce);
 
 // MODIFICATION ////////////////////////////////
 router.put('/:id', auth, sauceCtrl.modifySauce);
