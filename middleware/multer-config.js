@@ -1,3 +1,9 @@
+///////////////////////////////////////////////
+// Middleware multer: /////////////////////////
+///////////////////////////////////////////////
+
+
+// Importe le package qui permet de gérer les fichiers entrants dans les requêtes HTTP:
 const multer = require('multer');
 
 // Dictionnaire de type MIME:
