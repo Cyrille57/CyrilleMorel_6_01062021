@@ -79,8 +79,10 @@ exports.modifySauce = (req, res, next) => {
         /**
          * Si existe, traite la nouvelle image:
          */
+         
         ...JSON.parse(req.body.sauce),
         imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+        
       }
     : {
         /**
@@ -88,7 +90,8 @@ exports.modifySauce = (req, res, next) => {
          */
         ...req.body,
       };
-  /**
+  
+    /**
    * Méthode updateOne() du modèle Sauce, permet de mettre à jour la Sauce qui correspond à l'objet que nous passons comme premier argument.
    * Le paramètre id passé dans la demande le remplace par la Sauce passé comme second argument:
    */

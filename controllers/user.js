@@ -7,9 +7,11 @@
 // Importe le package de chiffrement bcrypt:
 const bcrypt = require("bcrypt");
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Importe le package qui créer et vérifie les tokens d'authentification:
 const jwt = require("jsonwebtoken");
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Importation du models user:
@@ -17,34 +19,40 @@ const User = require("../models/User");
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-// Importe le package body-parser
-// pour transformé le corp de la requéte en json en objet Javascript:
-//const bodyParser = require("body-parser");
-
-//////////////////////////////////////////////////////////////////////////////////////////////
 // Regex:
+/*
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 //  Contient au moins une lettre minuscule ( ?=.*[a-z]), une lettre majuscule ( ?=.*[A-Z]), un chiffre ( ?=.*[0-9]), un caractère spécial ( ?=.*[^A-Za-z0-9]) et au moins huit caractères ( ?=.{8,}):
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})$/
-
+*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Fonction pour inscrire le user:
+
 exports.signup = (req, res, next) => {
 
   // Params:
   var email= req.body.email
   var password = req.body.password
 
+  // Utilisation des regex :
+  /*
   if (!emailRegex.test(email)){
     return res.status(400).json({ 'error': "L'email n'est pas valide !"})
   }
+  
+  
   if (!passwordRegex.test(password)){
     return res.status(400).json({ 'error' : " Mot de passe invalide ! Doit contenir une lettre minuscule, une lettre majuscule, un chiffre, un caractère spécial et au moins huit caractères!"})
   }
-
-
+  */
+/*
+  // Vérifie la longueur du mdp:
+  if ( password.length != 8){
+    return res.status(400).json({ 'error': "Le mot de passe doit contenir uniquement 8 caractére !"})
+  }
+ */ 
   // Implémente la fonction de hachage de bcrypt:
   bcrypt
   //  Sale le mot de passe 10 fois:
@@ -74,6 +82,8 @@ exports.signup = (req, res, next) => {
       })
     );
 };
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Fonction login qui vérifie si un user qui tente de se connecter dispose d'identifiants valides:

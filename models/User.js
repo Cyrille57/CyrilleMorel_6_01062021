@@ -16,6 +16,7 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Modèle de données pour un user est le suivant, avec la méthode Schema mise à disposition par Mongoose:
 const userSchema = mongoose.Schema({
