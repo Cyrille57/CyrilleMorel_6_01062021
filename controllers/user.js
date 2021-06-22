@@ -32,8 +32,8 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.
 
 exports.signup = (req, res, next) => {
 
-  // Params:
-  var email= req.body.email
+  // Récupére l'email et le password::
+  var email= Buffer.from(req.body.email).toString("base64") // Convertit l'email en chaine de caractére
   var password = req.body.password
 
   // Utilisation des regex :
@@ -88,8 +88,9 @@ exports.signup = (req, res, next) => {
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Fonction login qui vérifie si un user qui tente de se connecter dispose d'identifiants valides:
 exports.login = (req, res, next) => {
+  var email= Buffer.from(req.body.email).toString("base64")
   //  Vérifie si l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données:
-  User.findOne({ email: req.body.email })
+  User.findOne({ email: email })
     .then(user => {
       if (!user) {
         // Retourne une erreur 401 Unauthorized

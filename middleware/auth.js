@@ -2,6 +2,9 @@
 // Middleware d'authentification: /////////////
 ///////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Importe dotEnv :
+const dotEnv = require("dotenv").config();
 
 // Importe le package qui créer et vérifie les tokens d'authentification:
 const jwt = require('jsonwebtoken');
@@ -11,7 +14,7 @@ module.exports = (req, res, next) => {
     // Extrait le token du header Authorization de la requête entrante:
     const token = req.headers.authorization.split(' ')[1];
     // La fonction verify décode le token:
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const decodedToken = jwt.verify(token, process.env.tokenLogInUser);
     // Extrait l'ID user du token:
     const userId = decodedToken.userId;
     // Si la demande contient un ID user, compare à celui extrait du token:
