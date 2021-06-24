@@ -41,9 +41,15 @@ const userRoutes = require("./routes/user");
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Connexions à la bdd:
 mongoose
+/*
+const user      = process.env.USER
+const password  = process.env.PASSWORD
+const nameDB    = process.env.NAMEDB
+*/
   .connect(
-    //'mongodb+srv://user-read-write:rp5E2NaTB89xGyY@cluster0.ncavz.mongodb.net/Pekocko?retryWrites=true&w=majority',
     (process.env.connectMDB), // l'adresse SRV de mongoDB protéger dans le fichier .env
+    //'mongodb+srv://user-read-write:rp5E2NaTB89xGyY@cluster0.ncavz.mongodb.net/Pekocko?retryWrites=true&w=majority',
+    //'mongodb+srv://user:password@cluster0.ncavz.mongodb.net/nameDB?retryWrites=true&w=majority', // l'adresse SRV de mongoDB protéger dans le fichier .env
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
