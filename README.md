@@ -83,5 +83,31 @@
   Charger le package nodemon <code>npm install -g nodemon</code>,</br>
   puis lancer le serveur, <code>nodemon</code> qui sera accessible sur <code>http://localhost:3000/</code>.
 </p>
-<h2>📫 Contact </h2>
-<p> Vous pouvez me contacter sur <a href="https://discord.gg/At8T9HD">discord</a>, <a href="https://twitter.com/Cyril2101">twitter</a> et <a href="mailto:cyril_dev@outlook.fr">mail</a>
+
+<h2>🙋‍♂️ À propos: </h2>
+
+<ul>
+  <li>
+    <a href="https://www.linkedin.com/in/cyrille-morel/">Linkedin</a>
+  </li>
+</ul> 
+
+
+<h2>📫 Contact: </h2>
+
+<ul>
+  <li>
+    <a href="mailto:cyril_dev@outlook.fr">Mail</a>
+  </li>
+</ul>
+
+ <h2>🌐 Réseaux sociaux:</h2>
+ 
+<ul>
+  <li>
+    <a href="https://discord.gg/At8T9HD">Discord</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/Cyril2101">Twitter</a>
+  </li>
+</ul>
