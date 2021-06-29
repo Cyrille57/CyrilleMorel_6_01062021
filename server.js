@@ -2,14 +2,11 @@
 // server.js //////////////////////////////////
 ///////////////////////////////////////////////
 
-
 // Contient le serveur ************************
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Importation de FS (accées aux opérations liées aux systémes de fichier):
 const fs = require("fs");
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Importe le package http de node:
@@ -25,11 +22,9 @@ const http = require("http");
  * }
  */
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Importe l'application de app.js:
 const app = require("./app");
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // La fonction normalizePort renvoie un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaîne:
@@ -49,7 +44,6 @@ const normalizePort = (val) => {
 const port = normalizePort(process.env.PORT || "3000");
 // Dis à l'application sur quel port elle doit tourné:
 app.set("port", port);
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // La fonction errorHandler  recherche les différentes erreurs et les gère de manière appropriée.
@@ -75,12 +69,10 @@ const errorHandler = (error) => {
   }
 };
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Créer le serveur grâce à la méthode .createserver du package http
 // en prenant comme argument la fonction de l'application qui sera appelée à chaque requête reçu par le serveur:
 const server = http.createServer(app);
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Gestions des événement serveur:
@@ -93,7 +85,6 @@ server.on("listening", () => {
   const bind = typeof address === "string" ? "pipe " + address : "port " + port;
   console.log("Listening on " + bind);
 });
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Ecoute le port définit en amont:

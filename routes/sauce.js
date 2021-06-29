@@ -18,6 +18,7 @@ const multer = require('../middleware/multer-config');
 // Importe le contrôleur sauce:
 const sauceCtrl = require('../controllers/sauce')
 
+
 ///////////////////////////////////////////////
 // CREATION ///////////////////////////////////
 router.post('/', auth, multer, sauceCtrl.createSauce);
@@ -41,7 +42,6 @@ router.get('/', auth, sauceCtrl.getAllSauces);
 ///////////////////////////////////////////////
 // Like ///////////////////////////////////////
 router.post('/:id/like', auth, sauceCtrl.createLikeDislakeSauce);
-
 
 
 // Exporte les routes:

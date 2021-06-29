@@ -20,39 +20,42 @@ const User = require("../models/User");
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Regex:
-/*
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+const emailRegex = /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/
 
 //  Contient au moins une lettre minuscule ( ?=.*[a-z]), une lettre majuscule ( ?=.*[A-Z]), un chiffre ( ?=.*[0-9]), un caractère spécial ( ?=.*[^A-Za-z0-9]) et au moins huit caractères ( ?=.{8,}):
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})$/
-*/
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Fonction pour inscrire le user:
 
 exports.signup = (req, res, next) => {
 
+
   // Récupére l'email et le password::
   var email= Buffer.from(req.body.email).toString("base64") // Convertit l'email en chaine de caractére
   var password = req.body.password
 
   // Utilisation des regex :
-  /*
-  if (!emailRegex.test(email)){
+
+  if (!emailRegex.test(req.body.email)){
     return res.status(400).json({ 'error': "L'email n'est pas valide !"})
   }
-  
-  
+
+//console.log(passwordRegex)
+//process.exit()
   if (!passwordRegex.test(password)){
     return res.status(400).json({ 'error' : " Mot de passe invalide ! Doit contenir une lettre minuscule, une lettre majuscule, un chiffre, un caractère spécial et au moins huit caractères!"})
   }
-  */
+  //console.log(passwordRegex)
+  //process.exit()
 /*
   // Vérifie la longueur du mdp:
   if ( password.length != 8){
     return res.status(400).json({ 'error': "Le mot de passe doit contenir uniquement 8 caractére !"})
   }
- */ 
+ */
   // Implémente la fonction de hachage de bcrypt:
   bcrypt
   //  Sale le mot de passe 10 fois:
@@ -84,11 +87,22 @@ exports.signup = (req, res, next) => {
 };
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Fonction login qui vérifie si un user qui tente de se connecter dispose d'identifiants valides:
 exports.login = (req, res, next) => {
   var email= Buffer.from(req.body.email).toString("base64")
+  
+  // Utilisation des regex :
+
+  if (!emailRegex.test(req.body.email)){
+    return res.status(400).json({ 'error': "L'email n'est pas valide !"})
+  }
+
+//console.log(passwordRegex)
+//process.exit()
+  if (!passwordRegex.test(req.body.password)){
+    return res.status(400).json({ 'error' : " Mot de passe invalide ! Doit contenir une lettre minuscule, une lettre majuscule, un chiffre, un caractère spécial et au moins huit caractères!"})
+  }
   //  Vérifie si l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données:
   User.findOne({ email: email })
     .then(user => {

@@ -14,6 +14,7 @@ const auth = require('../middleware/auth');
 // Importe le contrôleur user:
 const userCtrl = require('../controllers/user');
 
+
 // SIGNUP ////////////////////////////////////
 router.post('/signup', userCtrl.signup);
 
