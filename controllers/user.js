@@ -23,7 +23,9 @@ const User = require("../models/User");
 
 const emailRegex = /^[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/
 
-//  Contient au moins une lettre minuscule ( ?=.*[a-z]), une lettre majuscule ( ?=.*[A-Z]), un chiffre ( ?=.*[0-9]), un caractère spécial ( ?=.*[^A-Za-z0-9]) et au moins huit caractères ( ?=.{8,}):
+//  Contient au moins une lettre minuscule ( ?=.*[a-z]), une lettre majuscule ( ?=.*[A-Z]),
+// un chiffre ( ?=.*[0-9]), un caractère spécial ( ?=.*[^A-Za-z0-9]) et 
+//au moins huit caractères ( ?=.{8,}):
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
 
