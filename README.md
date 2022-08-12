@@ -1,5 +1,5 @@
 # 📢 Projet OpenClassrooms / P6 So Pekocko
-
+<p>01.06.2021</p>
 <p> 
   Dans le cadre de ma formation développeur web avec OpenClassrooms, différents projets sont à realiser.
 </p>
